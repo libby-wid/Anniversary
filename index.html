@@ -1,11 +1,130 @@
-
+<!DOCTYPE html>
 <script>
   const answer = prompt("Password hint: our thing 💕");
   if (answer !== "PASSWORD") {
     document.body.innerHTML = "<h2>Wrong password 😈</h2>";
   }
 </script>
-
-<h1>Hello world</h1>
 <!-- How to access website -->
 <!-- https://libby-wid.github.io/Anniversary/ -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy Anniversary ❤️</title>
+
+  <style>
+    body {
+      font-family: "Georgia", serif;
+      background: linear-gradient(#fff3f6, #fdecef);
+      color: #3a2c2c;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .section {
+      display: none;
+      max-width: 600px;
+      margin: auto;
+      animation: fadeIn 1.2s ease;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 2.4em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1em;
+      background-color: #e88fa0;
+      border: none;
+      border-radius: 25px;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d97a8c;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SECTION 1 -->
+  <div class="section active" id="section1">
+    <h1>Happy Anniversary ❤️</h1>
+    <p>
+      I wanted to make something just for you.<br>
+      Click through… take your time.
+    </p>
+    <button onclick="nextSection()">Begin 💌</button>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="section2">
+    <h1>How We Met</h1>
+    <p>
+      I didn’t know it then, but that moment would become
+      one of the most important beginnings of my life.
+    </p>
+    <button onclick="nextSection()">Next →</button>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="section3">
+    <h1>My Favorite Memories</h1>
+    <p>
+      Late nights. Dumb jokes.<br>
+      Feeling safe just sitting next to you.
+    </p>
+    <button onclick="nextSection()">Next →</button>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="section4">
+    <h1>Why I Love You</h1>
+    <p>
+      Because you’re kind without trying.<br>
+      Because life feels lighter with you in it.<br>
+      Because I choose you — every day.
+    </p>
+    <button onclick="nextSection()">One Last Thing 💖</button>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="section5">
+    <h1>Forever</h1>
+    <p>
+      Thank you for loving me the way you do.<br><br>
+      Happy Anniversary.<br>
+      I’m so glad it’s you.
+    </p>
+  </div>
+
+<script>
+  let current = 1;
+  function nextSection() {
+    document.getElementById("section" + current).classList.remove("active");
+    current++;
+    document.getElementById("section" + current).classList.add("active");
+  }
+</script>
+
+</body>
+</html>
