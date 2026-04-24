@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-<script>
-  const answer = prompt("Password hint: our thing 💕");
-  if (answer !== "PASSWORD") {
-    document.body.innerHTML = "<h2>Wrong password 😈</h2>";
-  }
-</script>
-<!-- How to access website -->
-<!-- https://libby-wid.github.io/Anniversary/ -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Happy Anniversary ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Anniversary Liam❤️</title>
 
   <style>
+    /* 1. HIDE EVERYTHING BY DEFAULT */
     body {
+      display: none; 
       font-family: "Georgia", serif;
       background: linear-gradient(#fff3f6, #fdecef);
       color: #3a2c2c;
       text-align: center;
+      min-height: 100vh;
       padding: 40px;
+      margin: 0;
     }
 
     .section {
@@ -43,7 +40,7 @@
     }
 
     button {
-      margin-top: 30px;
+      margin-top: 15px;
       padding: 12px 24px;
       font-size: 1em;
       background-color: #e88fa0;
@@ -51,42 +48,81 @@
       border-radius: 25px;
       color: white;
       cursor: pointer;
+      transition: background 0.3s;
     }
 
     button:hover {
       background-color: #d97a8c;
     }
+.card {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 30px rgba(232, 143, 160, 0.2);
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-</head>
+  .heart-icon {
+    font-size: 3rem;
+    display: inline-block;
+    animation: pulse 2s infinite;
+    margin-bottom: 10px;
+  }
 
-<body>
+  .dev-note {
+    background: #3a2c2c;
+    color: #e88fa0;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em;
+    margin-top: 25px;
+    text-align: left;
+    display: inline-block;
+  }
 
-  <!-- SECTION 1 -->
-  <div class="section active" id="section1">
-    <h1>Happy Anniversary ❤️</h1>
+  .dev-note ul { list-style: none; padding: 0; margin: 5px 0 0 0; }
+  .todo { color: #ffafcc; }
+  .done { color: #b7e4c7; }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+</style>
+
+<div class="section active" id="section1">
+  <div class="card">
+    <div class="heart-icon">❤️</div>
+    <h1>Happy Anniversary, Liam</h1>
     <p>
-      I wanted to make something just for you.<br>
-      Click through… take your time.
+      I decided to use my fancy software engineer skills <br>
+      to build a virtual present since I can't give you a hug today 🫂
     </p>
+    
     <button onclick="nextSection()">Begin 💌</button>
-  </div>
 
-  <!-- SECTION 2 -->
+    <br>
+    <div class="dev-note">
+      <code>// libby's_todo_list.js</code>
+      <ul>
+        <li class="done">✓ Anniversary website</li>
+        <li class="todo">× Packing for multi-state move</li>
+      </ul>
+    </div>
+  </div>
+</div>
   <div class="section" id="section2">
     <h1>How We Met</h1>
     <p>
-      I didn’t know it then, but that moment would become
+      I didn’t know it then, but that moment would become<br>
       one of the most important beginnings of my life.
     </p>
     <button onclick="nextSection()">Next →</button>
   </div>
 
-  <!-- SECTION 3 -->
   <div class="section" id="section3">
     <h1>My Favorite Memories</h1>
     <p>
@@ -96,7 +132,6 @@
     <button onclick="nextSection()">Next →</button>
   </div>
 
-  <!-- SECTION 4 -->
   <div class="section" id="section4">
     <h1>Why I Love You</h1>
     <p>
@@ -107,7 +142,6 @@
     <button onclick="nextSection()">One Last Thing 💖</button>
   </div>
 
-  <!-- SECTION 5 -->
   <div class="section" id="section5">
     <h1>Forever</h1>
     <p>
@@ -117,14 +151,42 @@
     </p>
   </div>
 
-<script>
-  let current = 1;
-  function nextSection() {
-    document.getElementById("section" + current).classList.remove("active");
-    current++;
-    document.getElementById("section" + current).classList.add("active");
-  }
-</script>
+  <script>
+    /* PASSWORD LOGIC */
+    const answer = prompt("Password hint: I always win at the ____ game 🥱");
+
+    // We check if the answer is "yawn" (ignoring capitals)
+    if (answer && answer.toLowerCase() === "yawn") {
+      // If correct, show the body
+      document.body.style.display = "block";
+    } else {
+      // If wrong, overwrite everything inside the body immediately
+      document.body.innerHTML = `
+        <div style="margin-top: 100px;">
+          <h1>Wrong password 🦧</h1>
+          <p>Try refreshing the page to try again.</p>
+        </div>
+      `;
+      document.body.style.display = "block";
+      window.stop(); // Stop any other scripts or images from loading
+    }
+
+    /* NAVIGATION LOGIC */
+    let current = 1;
+    function nextSection() {
+      const currentSection = document.getElementById("section" + current);
+      if (currentSection) {
+        currentSection.classList.remove("active");
+      }
+      
+      current++;
+      
+      const nextSection = document.getElementById("section" + current);
+      if (nextSection) {
+        nextSection.classList.add("active");
+      }
+    }
+  </script>
 
 </body>
 </html>
