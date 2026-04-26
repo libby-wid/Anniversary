@@ -6,6 +6,8 @@
   <title>Happy Anniversary Liam❤️</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Yellowtail&display=swap');
     /* 1. HIDE EVERYTHING BY DEFAULT */
     body {
       display: none; 
@@ -16,11 +18,12 @@
       min-height: 100vh;
       padding: 40px;
       margin: 0;
+      overflow-x: hidden; /* Prevents icons from causing horizontal scroll */
     }
 
     .section {
       display: none;
-      max-width: 600px;
+      max-width: 800px; /* Widened slightly to accommodate story cards better */
       margin: auto;
       animation: fadeIn 1.2s ease;
     }
@@ -54,113 +57,378 @@
     button:hover {
       background-color: #d97a8c;
     }
-.card {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    border-radius: 30px;
-    padding: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 10px 30px rgba(232, 143, 160, 0.2);
-  }
 
-  .heart-icon {
-    font-size: 3rem;
-    display: inline-block;
-    animation: pulse 2s infinite;
-    margin-bottom: 10px;
-  }
+    .section-title {
+      font-size: 4rem;
+      color: black;
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: 'Great Vibes', cursive;
+    }
 
-  .dev-note {
-    background: #3a2c2c;
-    color: #e88fa0;
-    padding: 15px;
-    border-radius: 10px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9em;
-    margin-top: 25px;
-    text-align: left;
-    display: inline-block;
-  }
+    .card {
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 30px rgba(232, 143, 160, 0.2);
+    }
 
-  .dev-note ul { list-style: none; padding: 0; margin: 5px 0 0 0; }
-  .todo { color: #ffafcc; }
-  .done { color: #b7e4c7; }
+    .heart-icon {
+      font-size: 3rem;
+      display: inline-block;
+      animation: pulse 2s infinite;
+      margin-bottom: 10px;
+    }
 
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-</style>
+    .dev-note {
+      background: #3a2c2c;
+      color: #e88fa0;
+      padding: 15px;
+      border-radius: 10px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.9em;
+      margin-top: 25px;
+      text-align: left;
+      display: inline-block;
+    }
 
-<div class="section active" id="section1">
-  <div class="card">
-    <div class="heart-icon">❤️</div>
-    <h1>Happy Anniversary, Liam</h1>
-    <p>
-      I decided to use my fancy software engineer skills <br>
-      to build a virtual present since I can't give you a hug today 🫂
-    </p>
-    
-    <button onclick="nextSection()">Begin 💌</button>
+    /* Storyboard Styling */
+    .story-container {
+      text-align: left;
+      margin: 20px auto;
+      padding: 10px;
+      position: relative; /* Base for floating icons */
+    }
 
-    <br>
-    <div class="dev-note">
-      <code>// libby's_todo_list.js</code>
-      <ul>
-        <li class="done">✓ Anniversary website</li>
-        <li class="todo">× Packing for multi-state move</li>
-      </ul>
+    .chapter-header {
+      font-family: "Georgia", serif;
+      font-size: 1.8em;
+      color: #d97a8c;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 2px solid #fdecef;
+      padding-bottom: 10px;
+    }
+
+    .memory-card {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(232, 143, 160, 0.1);
+      border-left: 5px solid #e88fa0;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 2; /* Keeps text above icons */
+    }
+
+    .memory-card:hover {
+      transform: translateX(5px);
+    }
+
+    .memory-card strong {
+      color: #e88fa0;
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .divider {
+      height: 50px;
+      width: 2px;
+      background: #e88fa0;
+      margin: 30px auto;
+      position: relative;
+    }
+
+    .divider::after {
+      content: '⬇';
+      position: absolute;
+      bottom: -15px;
+      left: -7px;
+      color: #e88fa0;
+    }
+
+    /* Margin Icons */
+    .margin-icon-container {
+      position: absolute;
+      width: 100vw;
+      height: 100%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .margin-icon {
+      position: absolute;
+      font-size: 2.5rem;
+      opacity: 1.0;
+      animation: float 4s ease-in-out infinite;
+    }
+
+     .photo-frame {
+      position: absolute;
+      width: 150px;
+      background: white;
+      padding: 10px;
+      /* Increased this to give you more white space for the caption */
+      padding-bottom: 50px; 
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      border-radius: 2px;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+.photo-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid #eee; /* Light border around the photo itself */
+}
+
+.photo-frame::after {
+  content: attr(data-caption);
+  position: absolute;
+  bottom: 12px; /* Positioned nicely in the new extra space */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  /* New handwriting font */
+  font-family: 'Patrick Hand', cursive;
+  font-size: 0.85rem;
+  color: #444;
+  padding: 0 0px;
+  line-height: 1.2;
+}
+
+.photo-frame:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 10;
+  box-shadow: 0 8px 25px rgba(232, 143, 160, 0.3);
+}
+
+    /* Keep your existing positioning IDs, but they now apply to the frame */
+    #photo-dance { top: 100px; left: -200px; }
+    #photo-tell-dad { top: 450px; right: -200px; }
+    #photo-mass { top: 800px; left: -200px;  }
+    #photo-adoration { top: 1100px; right: -200px;  }
+    #photo-david { top: 1400px; left: -200px;  }
+    #photo-date { top: 1700px; right: -200px;  }
+    #photo-graduation { top: 2000px; left: -200px;  }
+    #photo-dinner { top: 2300px; right: -200px; }
+    #photo-tiny-dance { top: 2600px; left: -200px; }
+
+    /* Hide photos on small screens so it doesn't get messy */
+    @media (max-width: 1000px) {
+      .margin-photo { display: none; }
+    }
+
+    /* Icon Positioning */
+    #ic-dance { top: 5%; left: 5%; animation-delay: 0.5s; }
+    #ic-speech { top: 15%; right: 5%; animation-delay: 1s; }
+    #ic-pray { top: 40%; left: 3%; animation-delay: 1.5s; }
+    #ic-shush { top: 25%; right: 8%; animation-delay: 2s; }
+    #ic-run { top: 60%; left: 6%; animation-delay: 0.3s; }
+    #ic-wii { top: 75%; right: 4%; animation-delay: 0.8s; }
+    #ic-heart { top: 90%; left: 10%; animation-delay: 1.2s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(10deg); }
+    }
+
+    .dev-note ul { list-style: none; padding: 0; margin: 5px 0 0 0; }
+    .code { font-weight: bold; font-size: medium; color: #6e7781; }
+    .todo { color: #ffafcc; }
+    .done { color: #b7e4c7; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section active" id="section1">
+    <div class="card">
+      <div class="heart-icon">❤️</div>
+      <h1>Happy Anniversary, Liam</h1>
+      <p>
+        I decided to use my fancy software engineer skills <br>
+        to build a virtual present since I can't give you a hug today 🫂
+      </p>
+      
+      <button onclick="nextSection()">Begin 💌</button>
+
+      <br>
+      <div class="dev-note">
+        <code class="code">// libby's_todo_list.js</code>
+        <ul>
+          <li class="done">✓ Anniversary website</li>
+          <li class="todo">× Packing for multi-state move</li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+
   <div class="section" id="section2">
-    <h1>How We Met</h1>
-    <p>
-      I didn’t know it then, but that moment would become<br>
-      one of the most important beginnings of my life.
-    </p>
-    <button onclick="nextSection()">Next →</button>
+    <div class="story-container">
+
+      <div class="photo-frame" id="photo-dance" data-caption="You checking me out at semi">
+        <img src="dance.jpg" alt="Dance">
+      </div>
+      <div class="photo-frame" id="photo-tell-dad" data-caption="Telling my dad you asked me on a date">
+        <img src="telling_dad.jpg" alt="Telling Dad">
+      </div>
+      <div class="photo-frame" id="photo-mass" data-caption="The sweetest text the day after you asked me out">
+        <img src="clarifying.jpg" alt="Mass Memory">
+      </div>
+      <div class="photo-frame" id="photo-adoration" data-caption="The flowers you got me for our first date">
+        <img src="flowers.jpg" alt="Adoration">
+      </div>
+      <div class="photo-frame" id="photo-david" data-caption="David finding out we were dating (iconic)">
+        <img src="david_findingout.jpg" alt="Shush">
+      </div>
+      <div class="photo-frame" id="photo-date" data-caption="Our first photo together">
+        <img src="firstphoto.jpg" alt="First Date">
+      </div>
+      <div class="photo-frame" id="photo-graduation" data-caption="You were a trooper this day">
+        <img src="graduation.jpg" alt="Graduation">
+      </div>
+      <div class="photo-frame" id="photo-dinner" data-caption="Dinner with my whole fam">
+        <img src="dinner.jpg" alt="Dinner">
+      </div>
+      <div class="photo-frame" id="photo-tiny-dance" data-caption="You showed me whole fam videos of you dancing">
+        <img src="tiny_dance.jpg" alt="Tiny Dance">
+      </div>
+      
+      <h1 class="section-title">Our Story</h1>
+      <div class="chapter-header">All the signs I missed... 🫣</div>
+      
+      <div class="memory-card">
+        <strong>April Fools Men's Group</strong>
+        <p>Little did I know you were taking mental notes this whole time. Still can't believe I didn't answer your "does it make a man more attractive to be a knight of columbus?" question. This is the first day I realized how funny you are. </p> 
+      </div>
+
+      <div class="memory-card">
+        <strong>Semi-Formal</strong>
+        <p>Matt told me I should go stand by you. I stood there with all your friends, but none of you would even make eye contact... I finally asked you to dance for a minute and spun you around. Sorry I beat you to asking me dance.💃</p> 
+      </div>
+
+      <div class="memory-card">
+        <strong>Dinner with Matt</strong>
+        <p>Matt quite literally said: "Make it easy for Liam to ask you out." My response? "Sure, but he won't." (Thank goodness I was so wrong)</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>Holy Thursday Mass</strong>
+        <p>You stood right by me afterward in the lounge after and didn't say a single word. Shoutout to Andrew for yapping the entire time and not giving you space to talk.</p>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="chapter-header">Time to Speed Run 🏎️</div>
+
+      <div class="memory-card">
+        <strong>3:00 AM Adoration</strong>
+        <p>I asked you to walk me over so I wouldn't get murdered. Two days before God gave me my post grad job. I was praying: "Next thing we need to figure out in my life is who my future husband is." 20 minutes later on the walk back, you asked me out. The text the next day clarifying it was a date still makes me smile.</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>Your Birthday</strong>
+        <p>I found out it was your birthday and went back and forth on if I should say anything. Finally decided on awkward-texting you Happy Birthday and your reply was just... "thanks lol".</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>Date #1: Walk in the Arb & Condados</strong>
+        <p>Abby helped me cut my hair an hour before you came over while I panicked. You showed up with flowers and it made me so happy. Abby was hiding in the bushes not so discreetly. You asked me all about running and you told me all about your grandparents' Swiss model house in the backyard. You had done your research before and found out Condados was my favorite restaurant. I was so nervous during lunch because we had to make eye contact while talking the whole time. I thought it was so cute you ordered the exact same thing as me. We went to Mass after and I had no idea how to say goodbye to you in the middle of the lounge so I just left ope. I thought I was cooked but Emma helped me craft a "smooth" text to save it.</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>Date #2: Ticket to Ride & Adoration</strong>
+        <p>I absolutely crushed you at the game (obviously cause I never lose at anything). I asked you after adoration what we would do about me moving to Tennessee. You told me you didn't know but we would figure it out.</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>Walk to 8pm Mass Together</strong>
+        <p>You asked me to walk to Mass together and I was so excited. I hugged you for the first time during the sign of peace. Mg was so mad at me because I left her stranded on the end by turning to you first.</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>Date #3: Picnic</strong>
+        <p>This date is I knew things were going to be so good. I had so much fun asking you questions. My favorite one was at the end I read the card "Are you pursuing any new relationships right now?" and you said "Just with you" and I had so many butterflies in my stomach. You also got absolutely fried.</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>April 30!!!</strong>
+        <p>I thought you were going to ask me and make it official at breakfast but that did not happen. But YAY we got to hang out again that night. All your roomates were downstairs cussing up a storm playing the wii and Ryan kept walking past giggiling but avoiding eye contact. Then finally you said "I have no idea what I'm doing, but should we make it official". After I said yes, I made you happy dance with me woo!</p>
+      </div>
+
+      <div class="memory-card">
+        <strong>MEGA speed run</strong>
+        <p>You met my whole family like two days later, we held hands and kissed for the first time, Honduras/Utah, and then about two days together in AA before we both went home. Shoutout meeting your dad and you being silent.</p>
+      </div>
+
+    </div> <div style="margin-top: 40px; text-align: center; position: relative; z-index: 5;">
+      <p><strong>I wouldn't change a single thing. I love you, Liam.</strong></p>
+      <button onclick="nextSection()">Next →</button>
+    </div>
   </div>
 
   <div class="section" id="section3">
-    <h1>My Favorite Memories</h1>
-    <p>
-      Late nights. Dumb jokes.<br>
-      Feeling safe just sitting next to you.
-    </p>
-    <button onclick="nextSection()">Next →</button>
+    <div class="card">
+      <h1>My Favorite Memories</h1>
+      <p>
+        Late nights. Dumb jokes.<br>
+        Feeling safe just sitting next to you.
+      </p>
+      <button onclick="nextSection()">Next →</button>
+    </div>
   </div>
 
   <div class="section" id="section4">
-    <h1>Why I Love You</h1>
-    <p>
-      Because you’re kind without trying.<br>
-      Because life feels lighter with you in it.<br>
-      Because I choose you — every day.
-    </p>
-    <button onclick="nextSection()">One Last Thing 💖</button>
+    <div class="card">
+      <h1>Why I Love You</h1>
+      <p>
+        Because you’re kind without trying.<br>
+        Because life feels lighter with you in it.<br>
+        Because I choose you — every day.
+      </p>
+      <button onclick="nextSection()">One Last Thing 💖</button>
+    </div>
   </div>
 
   <div class="section" id="section5">
-    <h1>Forever</h1>
-    <p>
-      Thank you for loving me the way you do.<br><br>
-      Happy Anniversary.<br>
-      I’m so glad it’s you.
-    </p>
+    <div class="card">
+      <h1>Forever</h1>
+      <p>
+        Thank you for loving me the way you do.<br><br>
+        Happy Anniversary.<br>
+        I’m so glad it’s you.
+      </p>
+    </div>
   </div>
 
   <script>
     /* PASSWORD LOGIC */
     const answer = prompt("Password hint: I always win at the ____ game 🥱");
 
-    // We check if the answer is "yawn" (ignoring capitals)
     if (answer && answer.toLowerCase() === "yawn") {
-      // If correct, show the body
       document.body.style.display = "block";
     } else {
-      // If wrong, overwrite everything inside the body immediately
       document.body.innerHTML = `
         <div style="margin-top: 100px;">
           <h1>Wrong password 🦧</h1>
@@ -168,7 +436,7 @@
         </div>
       `;
       document.body.style.display = "block";
-      window.stop(); // Stop any other scripts or images from loading
+      window.stop();
     }
 
     /* NAVIGATION LOGIC */
