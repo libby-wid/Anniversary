@@ -185,33 +185,33 @@
       transition: transform 0.3s ease;
     }
 
-.photo-frame img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid #eee; /* Light border around the photo itself */
+    .photo-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid #eee; /* Light border around the photo itself */
 }
 
-.photo-frame::after {
-  content: attr(data-caption);
-  position: absolute;
-  bottom: 12px; /* Positioned nicely in the new extra space */
-  left: 0;
-  width: 100%;
-  text-align: center;
-  /* New handwriting font */
-  font-family: 'Patrick Hand', cursive;
-  font-size: 0.85rem;
-  color: #444;
-  padding: 0 0px;
-  line-height: 1.2;
-}
+  .photo-frame::after {
+    content: attr(data-caption);
+    position: absolute;
+    bottom: 12px; /* Positioned nicely in the new extra space */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    /* New handwriting font */
+    font-family: 'Patrick Hand', cursive;
+    font-size: 0.85rem;
+    color: #444;
+    padding: 0 0px;
+    line-height: 1.2;
+  }
 
-.photo-frame:hover {
-  transform: scale(1.05) rotate(0deg) !important;
-  z-index: 10;
-  box-shadow: 0 8px 25px rgba(232, 143, 160, 0.3);
-}
+  .photo-frame:hover {
+    transform: scale(1.05) rotate(0deg) !important;
+    z-index: 10;
+    box-shadow: 0 8px 25px rgba(232, 143, 160, 0.3);
+  }
 
     /* Keep your existing positioning IDs, but they now apply to the frame */
     #photo-dance { top: 100px; left: -200px; }
@@ -238,6 +238,91 @@
     #ic-wii { top: 75%; right: 4%; animation-delay: 0.8s; }
     #ic-heart { top: 90%; left: 10%; animation-delay: 1.2s; }
 
+    .trophy-section{
+      padding-bottom: 50px;
+    }
+
+    /* Podium Styling - Sporty Edition */
+    .podium-container {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 15px; /* Widened gap for better separation */
+      margin: 50px 0 30px 0;
+      height: 250px; /* Taller for the trophy */
+    }
+
+    .podium-step {
+      background: white;
+      border-radius: 20px 20px 5px 5px; /* More rounded corners */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Heavy shadow for stability */
+      position: relative;
+      flex: 1;
+      border-style: solid;
+      border-width: 2px;
+    }
+
+    /* Medal Styling */
+    .medal {
+      font-size: 2.8rem;
+      position: absolute;
+      top: -30px; /* Floats above the step */
+      animation: bounce 1.5s ease-in-out infinite;
+    }
+
+    .step-label {
+      font-family: 'Georgia', serif;
+      font-weight: bold;
+      font-size: 1.3rem;
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    /* Gold Spot Glow Effect */
+    .gold { 
+      height: 100%; 
+      border-color: #ffd700; /* Real gold color */
+      background: radial-gradient(circle, #fffdf2 0%, #fff 100%);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); /* The glow */
+    }
+    .gold .step-label { color: #8e760c; }
+    .gold .medal { animation: bounce 1s ease-in-out infinite; } /* Faster bounce */
+
+    /* Silver Spot */
+    .silver { 
+      height: 75%; 
+      border-color: #c0c0c0; /* Real silver */
+      background: #fcfcfc;
+    }
+    .silver .step-label { color: #666; }
+
+    /* Bronze Spot */
+    .bronze { 
+      height: 55%; 
+      border-color: #cd7f32; /* Real bronze */
+      background: #fdfaf8;
+    }
+    .bronze .step-label { color: #916131; }
+
+    /* Winner's Trophy above Gold */
+    .trophy-container {
+      display: flex;
+      justify-content: center;
+      margin-top: -60px; /* Puts it at the very top */
+      font-size: 3rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    /* The bounce animation for the medals */
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(5deg); }
+    }
     @keyframes float {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
       50% { transform: translateY(-15px) rotate(10deg); }
@@ -388,15 +473,41 @@
     </div>
   </div>
 
-  <div class="section" id="section3">
-    <div class="card">
-      <h1>My Favorite Memories</h1>
-      <p>
-        Late nights. Dumb jokes.<br>
-        Feeling safe just sitting next to you.
-      </p>
-      <button onclick="nextSection()">Next →</button>
+ <div class="section" id="section3">
+    <h1 class="section-title trophy-section">The Hall of Fame 🏆</h1>
+    
+    <div class="trophy-container">🏆🏆🏆</div>
+
+    <div class="podium-container">
+      
+      <div class="podium-step silver">
+        <span class="medal">🥈</span>
+        <span class="step-label">Hot Tub 🫧</span>
+      </div>
+
+      <div class="podium-step gold">
+        <span class="medal">🥇</span>
+        <span class="step-label">The Picnic 🧺 👑</span>
+        <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">(Undisputed Champ)</p>
+      </div>
+
+      <div class="podium-step bronze">
+        <span class="medal">🥉</span>
+        <span class="step-label">Gladwin 🌲</span>
+      </div>
+
     </div>
+
+    <div class="honorable-mentions">
+      <h3>Other Top Contenders</h3>
+      <div class="mention-list">
+        <div class="mention-item">🌷 Holland Trip</div>
+        <div class="mention-item">🥂 Wedding Season</div>
+        <div class="mention-item">⛰️ Chatt Adventures</div>
+      </div>
+    </div>
+
+    <button onclick="nextSection()" style="margin-top: 30px;">Next →</button>
   </div>
 
   <div class="section" id="section4">
