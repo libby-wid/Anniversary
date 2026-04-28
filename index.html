@@ -318,6 +318,88 @@
       position: relative;
     }
 
+    .honorable-mentions {
+    text-align: left;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 25px;
+    border-radius: 20px;
+    margin-top: 30px;
+    border: 1px solid rgba(232, 143, 160, 0.3);
+  }
+
+  .mention-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 12px;
+    list-style: none;
+    padding: 0;
+  }
+
+  /* On small screens, switch to one column so text isn't squished */
+  @media (max-width: 600px) {
+    .mention-list { grid-template-columns: 1fr; }
+  }
+
+  .mention-item {
+    background: white;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    border-left: 4px solid #e88fa0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+  }
+
+      .love-list {
+    list-style-type: none; /* This removes the default black dots */
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+    margin: 20px 0;
+  }
+
+  .love-list li {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    padding-left: 35px; /* Keeps room for the heart */
+    position: relative;
+    line-height: 1.4;
+    list-style: none; /* Double insurance to hide default bullets */
+  }
+
+  .love-list li::before {
+    content: "💖";
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+    /* Counter Styling */
+    .counter-box {
+      margin: 25px 0;
+      padding: 15px;
+      background: rgba(232, 143, 160, 0.1);
+      border-radius: 15px;
+      border: 1px dashed #e88fa0;
+    }
+
+    .counter-number {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #d97a8c;
+      display: block;
+    }
+
+    /* Signature Styling */
+    .signature-img {
+      width: 120px; /* Adjust based on your image size */
+      height: auto;
+      display: block;
+      margin: 10px auto;
+      filter: multiply(1.1); /* Helps blend white backgrounds */
+    }
+
     /* The bounce animation for the medals */
     @keyframes bounce {
       0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -342,6 +424,12 @@
       0% { transform: scale(1); }
       50% { transform: scale(1.1); }
       100% { transform: scale(1); }
+    }
+    @keyframes driveRight {
+      0% { transform: translateX(-30px); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateX(30px); opacity: 0; }
     }
   </style>
 </head>
@@ -482,56 +570,102 @@
       
       <div class="podium-step silver">
         <span class="medal">🥈</span>
-        <span class="step-label">Hot Tub 🫧</span>
+        <span class="step-label">Slow dancing in the dark by the river</span>
       </div>
 
       <div class="podium-step gold">
         <span class="medal">🥇</span>
-        <span class="step-label">The Picnic 🧺 👑</span>
+        <span class="step-label">Totoro, adoration, hot tub gardens</span>
         <p style="font-size: 0.8rem; color: #777; margin-top: 10px;">(Undisputed Champ)</p>
       </div>
 
       <div class="podium-step bronze">
         <span class="medal">🥉</span>
-        <span class="step-label">Gladwin 🌲</span>
+        <span class="step-label">First visit to Chattanooga</span>
       </div>
 
     </div>
 
     <div class="honorable-mentions">
-      <h3>Other Top Contenders</h3>
-      <div class="mention-list">
-        <div class="mention-item">🌷 Holland Trip</div>
-        <div class="mention-item">🥂 Wedding Season</div>
-        <div class="mention-item">⛰️ Chatt Adventures</div>
-      </div>
-    </div>
+  <h3>Other Top Contenders</h3>
+  <div class="mention-list">
+    <div class="mention-item">🧺 Picnic date</div>
+    <div class="mention-item">🎮 Midnight Mario</div>
+    <div class="mention-item">🎄 Gladwin Christmas</div>
+    <div class="mention-item">🏎️ Driving in Gladwin with the doors of the Jeep off</div>
+    <div class="mention-item">🧱 Me reading the instructions telling you how to build the legos</div>
+    <div class="mention-item">🏖️ Pda beach day</div>
+    <div class="mention-item">📦 Escape room in a box</div>
+    <div class="mention-item">🥱 Battery game & yawn game</div>
+    <div class="mention-item">🎤 Long distance karaoke date night</div>
+    <div class="mention-item">🏈 67 football game</div>
+    <div class="mention-item">🍟 Fritas night where you fought for your life</div>
+    <div class="mention-item">🌍 Getting to see your Minecraft world</div>
+    <div class="mention-item">☢️ Playing Fallout</div>
+    <div class="mention-item">🧩 Puzzling in Grand Rapids</div>
+    <div class="mention-item">🌷 Holland Trip</div>
+    <div class="mention-item">😋 Wooden City</div>
+  </div>
+</div>
 
     <button onclick="nextSection()" style="margin-top: 30px;">Next →</button>
   </div>
 
   <div class="section" id="section4">
     <div class="card">
-      <h1>Why I Love You</h1>
-      <p>
-        Because you’re kind without trying.<br>
-        Because life feels lighter with you in it.<br>
-        Because I choose you — every day.
-      </p>
+      <h1 class="section-title">Why I Love You</h1>
+      
+      <ul class="love-list">
+        <li>Because you’re kind without even trying.</li>
+        <li>Because life feels 100x lighter with you in it.</li>
+        <li>Because you make me laugh harder than anyone else.</li>
+        <li>Because you're my favorite person to do absolutely nothing with.</li>
+        <li>Because <span class="highlight-text">I choose you</span> — every single day.</li>
+      </ul>
+
+      <div class="counter-box">
+        <span id="day-counter" class="counter-number">...</span>
+        <span style="font-size: 0.9rem; color: #3a2c2c;">days of loving you</span>
+      </div>
+
+      <img src="signature.png" class="signature-img" alt="Love, Libby">
+
       <button onclick="nextSection()">One Last Thing 💖</button>
     </div>
   </div>
 
   <div class="section" id="section5">
-    <div class="card">
-      <h1>Forever</h1>
-      <p>
-        Thank you for loving me the way you do.<br><br>
-        Happy Anniversary.<br>
-        I’m so glad it’s you.
-      </p>
+  <div class="card" style="border: 2px solid #a2d2ff; box-shadow: 0 0 20px rgba(162, 210, 255, 0.3);">
+    <div class="heart-icon">📍</div>
+    <h1>The Next Chapter</h1>
+    
+    <p>
+      From Tennessee to the Great Lakes... <br>
+      We’ve officially finished the "Speed Run" and now <br>
+      it's time for our new life in <strong>Michigan</strong>! ✋
+    </p>
+
+    <div style="font-size: 2.5rem; margin: 20px 0; animation: driveRight 4s linear infinite;">
+      🏙️ ➔ 🚚 ➔ 🌲
     </div>
+
+    <p>
+      I’m so excited for everything coming our way. <br>
+      New city, new home, same us.
+    </p>
+
+    <div style="font-family: 'Gloria Hallelujah', cursive; color: #d97a8c; font-size: 1.5rem; margin-top: 20px;">
+      To be continued in the Mitten...
+    </div>
+
+    <p style="margin-top: 40px; font-size: 0.9rem; opacity: 0.8;">
+      Happy Anniversary, Liam. <br>
+      I'm so glad I get to do life with you. ❤️
+    </p>
+
+    <button onclick="location.reload()" style="background: #a2d2ff; color: #333; font-size: 0.8rem;">Replay Our Story ↻</button>
   </div>
+</div>
 
   <script>
     /* PASSWORD LOGIC */
@@ -565,6 +699,23 @@
         nextSection.classList.add("active");
       }
     }
+
+    function updateCounter() {
+      const startDate = new Date("2025-04-30"); 
+      const today = new Date();
+      const timeDiff = today - startDate;
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      
+      document.getElementById("day-counter").innerText = days;
+    }
+
+    // Run the counter when the page loads
+    updateCounter();
+
+    if (current === 5) {
+      document.body.style.transition = "background 3s ease";
+      document.body.style.background = "linear-gradient(#fff3f6, #a2d2ff)"; 
+  }
   </script>
 
 </body>
