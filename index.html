@@ -661,8 +661,7 @@
     <h1>The Next Chapter</h1>
     
     <p>
-      From Speed Run to Long Distance <br>
-      We’ve officially finished the Long Distance (YAY!!) and now <br>
+      We’ve (almost) officially finished the Long Distance (YAY!!) and now <br>
       it's time for our in person dating life in <strong>Michigan</strong>! ✋
     </p>
 
@@ -719,6 +718,12 @@
       if (nextSection) {
         nextSection.classList.add("active");
       }
+
+      // --- THE FIX: AUTO-SCROLL TO TOP ---
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth' // This makes it a nice gentle slide instead of a jump
+        });
     }
 
     function updateCounter() {
